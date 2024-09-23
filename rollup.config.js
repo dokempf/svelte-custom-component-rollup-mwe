@@ -15,7 +15,7 @@ export default {
   },
   plugins: [
     svelte({
-      emitCss: true,
+      emitCss: false,
       preprocess: sveltePreprocess({
         postcss: true, // Use PostCSS to process TailwindCSS
       }),
@@ -23,7 +23,9 @@ export default {
         customElement: true
       }
     }),
-    postcss(),
+    postcss({
+      extract: "bundle.css"
+    }),
     resolve({
       browser: true,
       dedupe: ['svelte', 'flowbite-svelte']

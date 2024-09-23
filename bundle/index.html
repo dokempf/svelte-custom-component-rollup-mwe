@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rollup Shadow DOM MWE</title>
     <script src="bundle.js"></script>
+    <script>
+        customElements.whenDefined("my-counter").then(() => {
+        setTimeout(() => {
+          let ele = document.getElementById("foo");
+          console.log(ele);
+          var link = document.createElement("link");
+          link.setAttribute("rel", "stylesheet");
+          link.setAttribute(
+            "href",
+            "bundle.css"
+          );
+          ele.shadowRoot.appendChild(link);
+        }, 0);
+      });
+    </script>
 </head>
 <body>
-    <my-counter />
+    <my-counter id="foo"/>
 </body>
 </html>
